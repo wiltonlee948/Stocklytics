@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // get requests to main page
 app.get('/', (req, res) => {
-  res.render(path.join(__dirname,'../components/index.html'));
+  res.send('TEST');
 });
 
 // global error handler

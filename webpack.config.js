@@ -9,9 +9,8 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
-  mode: 'production',
-
+  devtool: 'eval-source-map',
+  mode: 'development',
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -24,12 +23,12 @@ module.exports = {
     hot: true,
     // html file served instead of 404 response
     historyApiFallback: true,
-    // proxy: {
-    //   '/api/**': {
-    //     target: 'http://localhost:3000/',
-    //     secure: false,
-    //   },
-    // },
+    proxy: {
+      '/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+    },
   },
 
   module: {
@@ -37,9 +36,7 @@ module.exports = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader'],
       },
       {
         test: /.(css|scss)$/,
