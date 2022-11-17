@@ -24,7 +24,7 @@ module.exports = {
     // html file served instead of 404 response
     historyApiFallback: true,
     proxy: {
-      '/api': {
+      '/api/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },

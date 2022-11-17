@@ -8,11 +8,13 @@ const connectDB = require('./config/db');
 // import cookie parser
 const cookieParser = require('cookie-parser');
 
-connectDB();
+
 const app = express();
 
 const PORT = 3000;
 
+// connect to mongo database
+connectDB();
 // parse request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -20,7 +22,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(cookieParser());
 
 // static files
-app.use(express.static(path.join(__dirname, '../client')));
+// app.use(express.static(path.join(__dirname, '../client')));
 
 // route requests to router
 app.use('/api', require('./routes/api'));
@@ -28,7 +30,14 @@ app.use('/api', require('./routes/api'));
 
 // global error handler
 app.use((err, req, res, next) => {
-
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
 
