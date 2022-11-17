@@ -44,7 +44,9 @@ export const WatchListContextProvider = (props) => {
     const retrieve = async () => {
       try {
         const response = await fetch('/api');
-        console.log('TEST', response);
+        const data = await response.json();
+        console.log('TEST', data.stock);
+        setWatchList(data.stock);
       } catch(err) {
         console.log(err);
       }
