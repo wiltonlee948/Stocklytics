@@ -1,6 +1,14 @@
 const path = require('path');
 const express = require('express');
+// import dotenv to use env variables in process
+const dotenv = require('dotenv').config();
+const colors = require('colors');
+// connect go mongodb
+const connectDB = require('./config/db');
+// import cookie parser
+const cookieParser = require('cookie-parser');
 
+connectDB();
 const app = express();
 
 const PORT = 3000;
@@ -8,6 +16,8 @@ const PORT = 3000;
 // parse request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+// parse cookies
+app.use(cookieParser());
 
 // static files
 app.use(express.static(path.join(__dirname, '../client')));
