@@ -12,10 +12,9 @@ app.use(express.urlencoded({ extended: true}));
 // static files
 app.use(express.static(path.join(__dirname, '../client')));
 
-// get requests to main page
-app.get('/', (req, res) => {
-  res.send('TEST');
-});
+// route requests to router
+app.use('/api', require('./routes/api'));
+
 
 // global error handler
 app.use((err, req, res, next) => {

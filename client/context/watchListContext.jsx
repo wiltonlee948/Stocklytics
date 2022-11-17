@@ -1,6 +1,6 @@
 import React from 'react';
 import {createContext, useState} from 'react';
-
+import axios from 'axios';
 
 export const WatchListContext = createContext();
 
@@ -12,7 +12,18 @@ export const WatchListContextProvider = (props) => {
     if (watchList.indexOf(stock) === -1) {
       setWatchList([...watchList, stock]);
     }
+    fetch('/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(watchList)
+    })
+      .then(data => data.json())
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
+  
   const deleteStock = (stock) => {
     setWatchList(watchList.filter(ele => {
       return ele !== stock;
