@@ -28,6 +28,8 @@ export const AutoComplete = () => {
         console.log(err);
       }
     };
+
+    // reset search state so that when nothing is typed, it is empty
     if (search.length > 0) {
       fetchData();
     } else {
@@ -49,7 +51,8 @@ export const AutoComplete = () => {
       <ul
         className={`dropdown-menu ${dropDown}`}
         style= {{
-          maxHeight:'500px',
+          width: '100%',
+          maxHeight:'300px',
           overflowY: 'scroll',
           cursor: 'pointer',
         }}
@@ -59,6 +62,7 @@ export const AutoComplete = () => {
     );
   };
 
+  // search bar
   return <div className="w-50 p-5 rounded mx-auto">
     <div className="form-floating dropdown">
       <input

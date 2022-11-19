@@ -8,7 +8,6 @@ const router = express.Router();
 // });
 
 router.get('/', stockController.getStock, (req, res) => {
-  console.log(res.locals.doc)
   res.status(200).json(res.locals.doc);
 });
 

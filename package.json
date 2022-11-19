@@ -1,3 +1,10 @@
+// "dev-front": "NODE_ENV=development webpack serve --open",
+// "dev-back": "nodemon server/server.js",
+// "dev-hour": "npm run dev-back & npm run dev-front",
+// "prod-hour": "npm run build && nodemon server/server.js"
+// “Concurrently \”cross-env npm run start:dev\” \”cross-env npm run dev\””
+
+
 {
   "name": "stock-app",
   "version": "1.0.0",

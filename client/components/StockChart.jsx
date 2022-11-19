@@ -6,6 +6,7 @@ export const StockChart = ({chartData, symbol}) => {
   const {day, week, year } = chartData;
   const [dateFormat, setDateFormat] = useState('24h');
 
+  // onclick changes the dateFormat state so we need to change data in series on line 54
   const determineTimeFormat = () => {
     switch(dateFormat) {
     case '24h':
@@ -18,9 +19,9 @@ export const StockChart = ({chartData, symbol}) => {
       return day;
     }
   };
-
+  // if the stock price at beginning of date(day, week, year) is less than stock price at end of date than red, else green
   const color = determineTimeFormat()[0].y - determineTimeFormat()[determineTimeFormat().length - 1].y > 0 ? '#ed3419' : '#26C281';
-
+  // apex graph setup
   const options = {
     colors: [color],
     title: {
@@ -52,7 +53,7 @@ export const StockChart = ({chartData, symbol}) => {
     name: symbol,
     data: determineTimeFormat()
   }];
-
+  // when button is clicked fill button else background is white
   const renderButtonSelect = (button) => {
     const classes = 'btn m-1';
     if (button === dateFormat) {

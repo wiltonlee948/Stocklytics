@@ -1,3 +1,4 @@
+/* delete button only visible when you hover over row*/
 .delete-button {
   visibility: hidden;
   margin-left: 10px;
@@ -5,4 +6,9 @@
 
 .table-row:hover .delete-button {
   visibility: visible;
+}
+
+h1 {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 5rem;
 }

@@ -7,7 +7,10 @@ import {WatchListContext} from '../context/watchListContext';
 
 export const StockList = () => {
   const [stock, setStock] = useState([]);
+  // import watchList from our context API
   const {watchList, deleteStock} = useContext(WatchListContext);
+
+  // allows us to navigate to another route
   const navigate = useNavigate();
 
   const changeColor = (change) => {
@@ -17,7 +20,7 @@ export const StockList = () => {
   const renderIcon = (change) => {
     return change > 0 ? <BsFillCaretUpFill /> : <BsFillCaretDownFill />;
   };
-
+  // fetch data for initial state, renders whenever watchlist changes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +46,7 @@ export const StockList = () => {
 
   }, [watchList]);
 
-
+  // navigates to details route when row is clicked
   const handleStockSelect = (symbol) => {
     navigate(`detail/${symbol}`);
   };
@@ -65,7 +68,7 @@ export const StockList = () => {
             <tr style={{cursor: 'pointer'}} onClick={() => handleStockSelect(stockData.symbol)}className="table-row" key={stockData.symbol}>
               <th scope="row">{stockData.symbol}</th>
               <td>{`$${stockData.data.c.toFixed(2)}`}</td>
-              <td className={`text-${changeColor(stockData.data.d)}`}>{`$${stockData.data.d}`}{renderIcon(stockData.data.d)}</td>
+              <td className={`text-${changeColor(stockData.data.d)}`}>{`$${stockData.data.d.toFixed(2)}`}{renderIcon(stockData.data.d)}</td>
               <td className={`text-${changeColor(stockData.data.dp)}`}>{`${stockData.data.dp.toFixed(2)}%`}{renderIcon(stockData.data.dp)}</td>
               <td>{`$${stockData.data.h.toFixed(2)}`}</td>
               <td>{`$${stockData.data.l.toFixed(2)}`}</td>

@@ -7,6 +7,9 @@ import { WatchListContextProvider } from './context/watchListContext';
 
 import './App.css';
 
+// use react router to render other components when page changes
+// BrowserRouter since we are in the browser
+
 function App () {
   return (
     <main className="container">
